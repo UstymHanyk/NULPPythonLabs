@@ -17,6 +17,7 @@ class LaserProjector(AbstractProjector):
     Methods:
         get_remaining_working_hours: Gets the remaining working hours based on the laser lifespan.
     """
+    features_set = {"Long-lasting battery", "High resolution", "long lifespan"}
 
     def __init__(self, model: str, resolution: str, connected_device: str, laser_lifespan_in_hours: int,
                  laser_brightness_in_lumens: int):
@@ -34,5 +35,9 @@ class LaserProjector(AbstractProjector):
         return self.laser_lifespan_in_hours
 
     def __str__(self):
+        return f"LaserProjector({super().__str__()}, laser_lifespan_in_hours={self.laser_lifespan_in_hours}, " \
+               f"laser_brightness_in_lumens={self.laser_brightness_in_lumens})"
+
+    def __repr__(self):
         return f"LaserProjector({super().__str__()}, laser_lifespan_in_hours={self.laser_lifespan_in_hours}, " \
                f"laser_brightness_in_lumens={self.laser_brightness_in_lumens})"

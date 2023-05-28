@@ -19,6 +19,7 @@ class PortableProjector(AbstractProjector):
         get_remaining_working_hours: Gets the remaining working hours based on the current battery charge level.
         charge_battery: Charges the battery of the portable projector.
     """
+    features_set = {"Small projector size", "Portability"}
 
     def __init__(self, model: str, resolution: str, connected_device: str, battery_capacity_in_mahs: int,
                  current_battery_charge_level_in_mahs: int, weight_in_kg: float):
@@ -48,6 +49,12 @@ class PortableProjector(AbstractProjector):
             self.current_battery_charge_level_in_mahs = self.battery_capacity_in_mahs
 
     def __str__(self):
+        return f"PortableProjector({super().__str__()}, " \
+               f"battery_capacity_in_mahs={self.battery_capacity_in_mahs}, " \
+               f"current_battery_charge_level_in_mahs={self.current_battery_charge_level_in_mahs}, " \
+               f"weight_in_kg={self.weight_in_kg})"
+
+    def __repr__(self):
         return f"PortableProjector({super().__str__()}, " \
                f"battery_capacity_in_mahs={self.battery_capacity_in_mahs}, " \
                f"current_battery_charge_level_in_mahs={self.current_battery_charge_level_in_mahs}, " \

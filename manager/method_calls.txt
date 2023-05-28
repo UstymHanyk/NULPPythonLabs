@@ -1,0 +1,6 @@
+
+add_projector:94
+
+find_all_projectors_with_connection_device:24
+
+find_all_projectors_with_resolution_higher_than:24
