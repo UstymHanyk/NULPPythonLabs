@@ -1,5 +1,4 @@
 from models.abstract_projector import AbstractProjector
-from models.display_mode import DisplayMode
 
 
 class LampProjector(AbstractProjector):
@@ -20,6 +19,7 @@ class LampProjector(AbstractProjector):
         increase_lamp_hours: Increases the lamp hours of the projector.
         get_remaining_working_hours: Gets the remaining lamp hours of the projector.
     """
+    features_set = {"High brightness"}
 
     def __init__(self, model=None, resolution=None, connected_device=None, lamp_hours=0, mode='Active',
                  max_lamp_hours=10000):
@@ -47,5 +47,9 @@ class LampProjector(AbstractProjector):
         return self.max_lamp_hours - self.lamp_hours
 
     def __str__(self):
+        return f"LampProjector({super().__str__()}, lamp_hours={self.lamp_hours}, mode={self.mode}, " \
+               f"max_lamp_hours={self.max_lamp_hours})"
+
+    def __repr__(self):
         return f"LampProjector({super().__str__()}, lamp_hours={self.lamp_hours}, mode={self.mode}, " \
                f"max_lamp_hours={self.max_lamp_hours})"

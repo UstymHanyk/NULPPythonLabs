@@ -17,12 +17,14 @@ class AbstractProjector(ABC):
         disconnect_device: Disconnects the current input device.
         get_remaining_working_hours: Abstract method to get the remaining working hours of the projector.
     """
+    features_set = set()
 
     def __init__(self, model: str = None, resolution: str = None, connected_device: str = None):
         self.model = model
         self.resolution = resolution
         self.connected_device = connected_device
-
+    def __iter__(self):
+        return iter(self.features_set)
     def add_input_device(self, device: str):
         """
         Adds an input device to the projector.
@@ -47,6 +49,9 @@ class AbstractProjector(ABC):
             int: The remaining working hours of the projector.
         """
         pass
+
+    def filter_attributes_by_type(self, attribute_type):
+        return {key: value for key, value in self.__dict__.items() if isinstance(value, attribute_type)}
 
     def __str__(self):
         return f"model={self.model}, resolution={self.resolution}, connnected_device={self.connected_device}"
