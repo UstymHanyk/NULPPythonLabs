@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-
+from decorators.logged import logged
+from exceptions.no_connected_device import NoConnectedDeviceException
 
 class AbstractProjector(ABC):
     """
@@ -34,11 +35,15 @@ class AbstractProjector(ABC):
         """
         self.connected_device = device
 
+    @logged(NoConnectedDeviceException, mode="console")
     def disconnect_device(self):
         """
         Disconnects the current input device.
         """
-        self.connected_device = None
+        if self.connected_device is None:
+            raise NoConnectedDeviceException
+        else:
+            self.connected_device = None
 
     @abstractmethod
     def get_remaining_working_hours(self) -> int:

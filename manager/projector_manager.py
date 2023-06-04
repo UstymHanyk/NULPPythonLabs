@@ -1,6 +1,5 @@
 from decorators.method_calls_logger import record_calls_decorator
 from decorators.method_results_logger import write_result_decorator
-from decorators.pylint_decorator import run_pylint
 from models.lamp_projector import LampProjector
 from models.home_theater import HomeTheater
 from models.portable_projector import PortableProjector
@@ -35,16 +34,40 @@ class ProjectorManager:
         return iter(self.projectors)
 
     def execute_method_on_all_projectors(self):
+        """
+        Execute a method on all projectors.
 
+        Returns:
+            list: A list of method results for each projector.
+        """
         return [projector.get_remaining_working_hours() for projector in self.projectors]
 
     def get_projectors_enumerated(self):
+        """
+        Get an enumerated list of projectors.
+
+        Returns:
+            enumerate: An enumerated list of projectors.
+        """
         return enumerate(self.projectors)
 
     def zip_projector_with_method_result(self):
+        """
+        Zip projectors with their method results.
+
+        Returns:
+            list: A list of tuples containing a projector and its method result.
+        """
         return list(zip(self.projectors, self.execute_method_on_all_projectors()))
 
     def check_condition_on_all_projectors(self):
+        """
+        Check a condition on all projectors.
+
+        Returns:
+            dict: A dictionary containing the condition results ('all': True if all projectors satisfy the condition,
+            'any': True if any projector satisfies the condition).
+        """
         condition_results = [projector.resolution == "1920x1080" for projector in self.projectors]
         return {"all": all(condition_results), "any": any(condition_results)}
 
@@ -88,9 +111,6 @@ class ProjectorManager:
         """
         return list(filter(lambda projector: int(projector.resolution.split('x')[0]) > width_in_pixels and int(
             projector.resolution.split('x')[1]) > height_in_pixels, self.projectors))
-    @run_pylint(__file__)
-    def execute_pylint(self):
-        print("Pylint is running..")
 
 if __name__ == "__main__":
     projector_manager = ProjectorManager()
@@ -132,4 +152,6 @@ if __name__ == "__main__":
     condition_results = projector_manager.check_condition_on_all_projectors()
     print(f"All condition results: {condition_results['all']}")
     print(f"Any condition results: {condition_results['any']}")
-    projector_manager.execute_pylint()
+
+    high_resolution_projectors[0].disconnect_device()
+    high_resolution_projectors[0].disconnect_device()
