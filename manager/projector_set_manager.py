@@ -1,13 +1,27 @@
 from itertools import chain
-from ua.lviv.iot.algo.part1.lab7.manager.projector_manager import ProjectorManager
-from ua.lviv.iot.algo.part1.lab7.models.display_mode import DisplayMode
-from ua.lviv.iot.algo.part1.lab7.models.home_theater import HomeTheater
-from ua.lviv.iot.algo.part1.lab7.models.lamp_projector import LampProjector
-from ua.lviv.iot.algo.part1.lab7.models.laser_projector import LaserProjector
-from ua.lviv.iot.algo.part1.lab7.models.portable_projector import PortableProjector
+from manager.projector_manager import ProjectorManager
+from models.display_mode import DisplayMode
+from models.home_theater import HomeTheater
+from models.lamp_projector import LampProjector
+from models.laser_projector import LaserProjector
+from models.portable_projector import PortableProjector
 
 
 class ProjectorSetManager:
+    """
+    ProjectorSetManager class
+
+    This class manages a collection of projectors and provides methods to iterate over the features of all projectors.
+
+    Attributes:
+        projector_manager (ProjectorManager): The projector manager object that contains the projectors.
+
+    Methods:
+        __iter__: Returns an iterator to iterate over the features of all projectors.
+        __len__: Returns the total number of features in all projectors.
+        __getitem__: Returns the feature at the specified index.
+        __next__: Returns the next feature in the iterator.
+    """
     def __init__(self, projector_manager):
         self.projector_manager = projector_manager
 
